@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>쿠폰 확인</title>
+  <script>
+    (function(){
+      // 허용된 쿠폰키들 목록
+      const ALLOWED_KEYS = [
+        "jungmun_team-0016",
+        "3nm2pa0ce",
+        "b3j1bd10b",
+        "0m1bcw3np",
+        "0d3g1s9r8",
+      ];
+
+      const params = new URLSearchParams(location.search);
+      const key = params.get("couponkey");
+
+      if (ALLOWED_KEYS.includes(key)) {
+        // 맞는 쿠폰이면 chat.html로 이동
+        location.href = "./chat.html";
+      } else {
+        // 틀리면 index.html로 이동
+        location.href = "./index.html";
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p>쿠폰 확인 중... 잠시만 기다려주세요 ⏳</p>
+</body>
+</html>
