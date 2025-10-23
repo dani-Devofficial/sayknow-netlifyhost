@@ -1,1 +1,126 @@
-Comming soon
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 채팅창</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .chat-container {
+        width: 400px;
+        max-width: 90%;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .chat-header {
+        padding: 15px;
+        background: linear-gradient(90deg, #6a11cb, #2575fc);
+        color: white;
+        font-weight: bold;
+        text-align: center;
+    }
+    .chat-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background-color: #f9f9f9;
+    }
+    .message {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .message.user {
+        align-items: flex-end;
+    }
+    .message.bot {
+        align-items: flex-start;
+    }
+    .message-text {
+        max-width: 75%;
+        padding: 10px 15px;
+        border-radius: 20px;
+        background-color: #e1e1e1;
+    }
+    .message.user .message-text {
+        background-color: #2575fc;
+        color: white;
+    }
+    .chat-input {
+        display: flex;
+        border-top: 1px solid #ddd;
+    }
+    .chat-input input {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+    }
+    .chat-input button {
+        padding: 12px 20px;
+        background-color: #2575fc;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+    .chat-input button:hover {
+        background-color: #1a5ccc;
+    }
+</style>
+</head>
+<body>
+<div class="chat-container">
+    <div class="chat-header">SayKnow AI 🤖</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="메시지를 입력하세요..." />
+        <button onclick="sendMessage()">전송</button>
+    </div>
+</div>
+
+<script>
+const chatMessages = document.getElementById('chatMessages');
+const userInput = document.getElementById('userInput');
+
+function addMessage(text, sender) {
+    const messageEl = document.createElement('div');
+    messageEl.classList.add('message', sender);
+    const textEl = document.createElement('div');
+    textEl.classList.add('message-text');
+    textEl.textContent = text;
+    messageEl.appendChild(textEl);
+    chatMessages.appendChild(messageEl);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function sendMessage() {
+    const text = userInput.value.trim();
+    if(!text) return;
+    addMessage(text, 'user');
+    userInput.value = '';
+    
+    // ⚡ 여기에 AI 응답 연결
+    setTimeout(() => {
+        addMessage("AI가 아직 연결 안 됐어요 😅", 'bot');
+    }, 500);
+}
+
+userInput.addEventListener('keypress', function(e){
+    if(e.key === 'Enter') sendMessage();
+});
+</script>
+</body>
+</html>
