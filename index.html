@@ -4,20 +4,32 @@
 <meta charset="UTF-8">
 <title>Sayknow AI</title>
 <style>
-  /* 전체 화면 세팅 */
   body {
     margin: 0;
-    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f0f4ff, #d0e0ff);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #f0f4ff, #d0e0ff);
-    font-family: 'Arial', sans-serif;
-    overflow: hidden;
+    height: 100vh;
   }
 
-  /* 무지개 텍스트 */
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    max-width: 1200px;
+    padding: 20px;
+  }
+
+  .text-section {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
   .rainbow-text {
     font-size: 70px;
     font-weight: bold;
@@ -25,9 +37,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: rainbow 3s linear infinite;
-    text-align: center;
-    margin-bottom: 60px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
   }
 
   @keyframes rainbow {
@@ -35,45 +44,63 @@
     100% { background-position: 100%; }
   }
 
-  /* 채팅 시작 버튼 */
+  .description {
+    font-size: 18px;
+    color: #333;
+  }
+
   .start-btn {
-    padding: 20px 60px;
-    font-size: 26px;
+    padding: 18px 50px;
+    font-size: 22px;
     font-weight: bold;
     color: white;
     background: linear-gradient(45deg, #ff6a00, #ee0979);
     border: none;
-    border-radius: 15px;
+    border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
   }
 
   .start-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   }
 
-  /* 작은 AI 로고 느낌 원 추가 */
-  .glow {
+  .image-section {
+    position: relative;
+  }
+
+  .image-section img {
+    width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .chat-bubble {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,123,255,0.1) 70%);
-    border-radius: 50%;
-    z-index: -1;
-    animation: float 6s ease-in-out infinite alternate;
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-30px); }
+    bottom: 20px;
+    left: -30px;
+    max-width: 220px;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    font-size: 14px;
   }
 </style>
 </head>
 <body>
-  <div class="glow"></div>
-  <div class="rainbow-text">Sayknow 🌈</div>
-  <button class="start-btn" onclick="location.href='./chat_ns.html'">채팅 시작</button>
+  <div class="container">
+    <div class="text-section">
+      <div class="rainbow-text">Sayknow 🌈</div>
+      <div class="description">AI와 대화하며 글을 쓰고, 계획을 세우고, 학습을 시작해 보세요.</div>
+      <button class="start-btn" onclick="location.href='./chat_ns.html'">채팅 시작</button>
+    </div>
+    <div class="image-section">
+      <img src="https://via.placeholder.com/500x350.png?text=Example+Image" alt="예시 이미지">
+      <div class="chat-bubble">대학 입시를 준비하려 하는데, 어떤 전공이 좋을까?</div>
+    </div>
+  </div>
 </body>
 </html>
