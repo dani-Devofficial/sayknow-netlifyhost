@@ -3,87 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 채팅창</title>
+<title>ChatGPT 스타일 채팅창</title>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
     body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f0f2f5;
+        font-family: 'Inter', sans-serif;
+        background-color: #343541;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
     }
+
     .chat-container {
         width: 400px;
         max-width: 90%;
-        background-color: #fff;
+        height: 600px;
+        background-color: #40414f;
         border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         display: flex;
         flex-direction: column;
         overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
+
     .chat-header {
         padding: 15px;
-        background: linear-gradient(90deg, #6a11cb, #2575fc);
-        color: white;
-        font-weight: bold;
+        background-color: #202123;
+        color: #fff;
+        font-weight: 600;
         text-align: center;
+        border-bottom: 1px solid #555;
     }
+
     .chat-messages {
         flex: 1;
         padding: 15px;
         overflow-y: auto;
-        background-color: #f9f9f9;
-    }
-    .message {
-        margin-bottom: 10px;
         display: flex;
         flex-direction: column;
+        gap: 10px;
     }
-    .message.user {
-        align-items: flex-end;
-    }
-    .message.bot {
-        align-items: flex-start;
-    }
-    .message-text {
+
+    .message {
         max-width: 75%;
         padding: 10px 15px;
         border-radius: 20px;
-        background-color: #e1e1e1;
+        word-wrap: break-word;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    .message.user .message-text {
-        background-color: #2575fc;
+
+    .message.user {
+        align-self: flex-end;
+        background-color: #10a37f;
         color: white;
+        border-bottom-right-radius: 5px;
     }
+
+    .message.bot {
+        align-self: flex-start;
+        background-color: #444654;
+        color: #e0e0e0;
+        border-bottom-left-radius: 5px;
+    }
+
     .chat-input {
         display: flex;
-        border-top: 1px solid #ddd;
+        padding: 10px;
+        background-color: #343541;
+        border-top: 1px solid #555;
     }
+
     .chat-input input {
         flex: 1;
-        padding: 12px;
+        padding: 10px 15px;
+        border-radius: 10px;
         border: none;
         outline: none;
         font-size: 14px;
+        background-color: #202123;
+        color: #fff;
     }
+
+    .chat-input input::placeholder {
+        color: #888;
+    }
+
     .chat-input button {
-        padding: 12px 20px;
-        background-color: #2575fc;
+        margin-left: 10px;
+        padding: 10px 15px;
         border: none;
-        color: white;
+        border-radius: 10px;
+        background-color: #10a37f;
+        color: #fff;
+        font-weight: 500;
         cursor: pointer;
+        transition: 0.2s;
     }
+
     .chat-input button:hover {
-        background-color: #1a5ccc;
+        background-color: #0d8469;
+    }
+
+    /* 스크롤 깔끔하게 */
+    .chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+    .chat-messages::-webkit-scrollbar-thumb {
+        background-color: #555;
+        border-radius: 3px;
+    }
+    .chat-messages::-webkit-scrollbar-track {
+        background: #343541;
     }
 </style>
 </head>
 <body>
 <div class="chat-container">
-    <div class="chat-header">SayKnow AI 🤖</div>
+    <div class="chat-header">ChatGPT 스타일 🤖</div>
     <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-input">
         <input type="text" id="userInput" placeholder="메시지를 입력하세요..." />
@@ -98,10 +137,7 @@ const userInput = document.getElementById('userInput');
 function addMessage(text, sender) {
     const messageEl = document.createElement('div');
     messageEl.classList.add('message', sender);
-    const textEl = document.createElement('div');
-    textEl.classList.add('message-text');
-    textEl.textContent = text;
-    messageEl.appendChild(textEl);
+    messageEl.textContent = text;
     chatMessages.appendChild(messageEl);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
@@ -112,9 +148,9 @@ function sendMessage() {
     addMessage(text, 'user');
     userInput.value = '';
     
-    // ⚡ 여기에 AI 응답 연결
+    // AI 응답 예시 (나중에 API 연결 가능)
     setTimeout(() => {
-        addMessage("AI가 아직 연결 안 됐어요 😅", 'bot');
+        addMessage("AI: 아직 연결 안 됐어요 😅", 'bot');
     }, 500);
 }
 
