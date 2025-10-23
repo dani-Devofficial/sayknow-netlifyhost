@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Sayknow AI</title>
 <style>
+  /* 전체 화면 세팅 */
   body {
     margin: 0;
     height: 100vh;
@@ -11,28 +12,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
-    font-family: "Arial", sans-serif;
+    background: linear-gradient(135deg, #f0f4ff, #d0e0ff);
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
   }
 
+  /* 무지개 텍스트 */
   .rainbow-text {
-    font-size: 60px;
+    font-size: 70px;
     font-weight: bold;
-    background: linear-gradient(
-      90deg,
-      red,
-      orange,
-      yellow,
-      green,
-      blue,
-      indigo,
-      violet
-    );
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: rainbow 3s linear infinite;
-    margin-bottom: 50px;
     text-align: center;
+    margin-bottom: 60px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
   }
 
   @keyframes rainbow {
@@ -40,24 +35,44 @@
     100% { background-position: 100%; }
   }
 
+  /* 채팅 시작 버튼 */
   .start-btn {
-    padding: 20px 50px;
-    font-size: 24px;
+    padding: 20px 60px;
+    font-size: 26px;
     font-weight: bold;
     color: white;
-    background-color: #007BFF;
+    background: linear-gradient(45deg, #ff6a00, #ee0979);
     border: none;
-    border-radius: 12px;
+    border-radius: 15px;
     cursor: pointer;
-    transition: background 0.3s;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
   }
 
   .start-btn:hover {
-    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+  }
+
+  /* 작은 AI 로고 느낌 원 추가 */
+  .glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,123,255,0.1) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: float 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-30px); }
   }
 </style>
 </head>
 <body>
+  <div class="glow"></div>
   <div class="rainbow-text">Sayknow 🌈</div>
   <button class="start-btn" onclick="location.href='./chat_ns.html'">채팅 시작</button>
 </body>
