@@ -2,10 +2,21 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>무지개 텍스트</title>
+<title>Sayknow AI</title>
 <style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: "Arial", sans-serif;
+  }
+
   .rainbow-text {
-    font-size: 50px;
+    font-size: 60px;
     font-weight: bold;
     background: linear-gradient(
       90deg,
@@ -20,15 +31,34 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: rainbow 3s linear infinite;
+    margin-bottom: 50px;
+    text-align: center;
   }
 
   @keyframes rainbow {
-    0% { background-position: 0%;}
-    100% { background-position: 100%;}
+    0% { background-position: 0%; }
+    100% { background-position: 100%; }
+  }
+
+  .start-btn {
+    padding: 20px 50px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .start-btn:hover {
+    background-color: #0056b3;
   }
 </style>
 </head>
 <body>
-  <div class="rainbow-text">무지개빛 텍스트 🌈</div>
+  <div class="rainbow-text">Sayknow 🌈</div>
+  <button class="start-btn" onclick="location.href='./chat_ns.html'">채팅 시작</button>
 </body>
 </html>
